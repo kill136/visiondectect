@@ -1,0 +1,9 @@
+path: /home/wbj/Documents/AI/Smart-Ai-Pothole-Detecto/jetson-nano-source-code/balanced_dataset  # dataset root dir
+train: train  # train images
+val: train  # val images (relative to 'path')
+
+# Classes
+names:
+  0: ink_bleeding
+  1: ink_break
+  2: normal

@@ -1,0 +1,24 @@
+# Ignore dataset files
+*.pt
+*.pth
+*.onnx
+*.engine
+dataset/
+datasets/
+balanced_dataset/
+test_samples/
+raw_images/
+
+# Ignore cache files
+__pycache__/
+*.pyc
+
+# Ignore training outputs
+runs/
+weights/
+*.log
+
+# Ignore large files
+*.zip
+*.tar
+*.gz

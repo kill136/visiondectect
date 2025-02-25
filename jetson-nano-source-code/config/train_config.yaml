@@ -1,0 +1,54 @@
+# 训练配置文件
+
+# 数据集配置
+dataset:
+  train_dir: "split_dataset/train"
+  val_dir: "split_dataset/val"
+  test_dir: "split_dataset/test"
+  input_size: [256, 256]  # 图片输入尺寸
+  num_classes: 3  # normal, ink_bleeding, ink_break
+  class_names: ["normal", "ink_bleeding", "ink_break"]
+  batch_size: 32
+  num_workers: 4  # 数据加载线程数
+
+# 模型配置
+model:
+  name: "resnet18"  # 使用更简单的ResNet18
+  pretrained: true  # 使用预训练权重
+  dropout_rate: 0.2
+  label_smoothing: 0.1  # 标签平滑，防止过拟合
+
+# 训练配置
+training:
+  epochs: 50
+  early_stopping_patience: 10  # 提前停止的轮数
+  learning_rate: 0.001
+  weight_decay: 0.0001  # L2正则化
+  optimizer: "adam"  # 优化器选择
+  scheduler:  # 学习率调度器
+    name: "cosine"  # 余弦退火
+    T_max: 50  # 调度周期
+    eta_min: 0.00001  # 最小学习率
+
+  # 数据增强策略
+  augmentation:
+    random_rotation: 10  # 随机旋转±10度
+    random_brightness: 0.2  # 随机亮度调整
+    random_contrast: 0.2  # 随机对比度调整
+    random_horizontal_flip: true  # 随机水平翻转
+    random_vertical_flip: false  # 不进行垂直翻转，因为缺陷方向有意义
+
+# 保存和日志配置
+output:
+  save_dir: "model_outputs"  # 模型保存目录
+  checkpoint_frequency: 5  # 每5个epoch保存一次检查点
+  tensorboard: true  # 使用TensorBoard记录训练过程
+  save_best_only: true  # 只保存最佳模型
+
+# TensorRT导出配置
+tensorrt:
+  export_onnx: true  # 导出ONNX模型
+  fp16_mode: true  # 使用FP16精度
+  max_workspace_size: 1073741824  # 1GB TensorRT工作空间
+  min_batch_size: 1
+  max_batch_size: 8
