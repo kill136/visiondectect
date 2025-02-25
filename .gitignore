@@ -3,9 +3,6 @@
 *.pth
 *.onnx
 *.engine
-dataset/
-datasets/
-balanced_dataset/
 test_samples/
 raw_images/
 
@@ -15,7 +12,6 @@ __pycache__/
 
 # Ignore training outputs
 runs/
-weights/
 *.log
 
 # Ignore large files
