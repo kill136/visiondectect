@@ -11,8 +11,6 @@ __pycache__/
 *.pyc
 
 # Ignore training outputs
-runs/
-*.log
 
 # Ignore large files
 *.zip
